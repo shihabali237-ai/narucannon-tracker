@@ -1,11 +1,5 @@
 <!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0d12">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="NaruCannon">
-<link rel="manifest" href="manifest.webmanifest">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d12"><link rel="manifest" href="manifest.json">
 <title>NaruCannon Tracker</title>
 <style>
 :root{--bg:#0b0d12;--card:#151923;--card2:#1b2030;--text:#f5f7fb;--muted:#9ca5b5;--accent:#ff4d4d;--line:#293042}
@@ -40,7 +34,4 @@ let b=document.createElement("button");b.className="selectall";b.textContent=cou
 actions.append(c,b);head.append(h,actions);sec.append(head);
 eps.forEach(e=>{let k=`s${s.number}e${e.number}`,row=document.createElement("div");row.className="episode"+(progress[k]?" done":"");row.innerHTML=`<div class="num">E${String(e.number).padStart(2,"0")}</div><div><div class="title"></div><div class="meta"></div></div><button class="check">${progress[k]?"✓":""}</button>`;row.querySelector(".title").textContent=e.title;row.querySelector(".meta").textContent=`Original Naruto: ${e.original} · ${e.date}`;row.querySelector(".check").onclick=()=>{progress[k]=!progress[k];localStorage.setItem(KEY,JSON.stringify(progress));render();update()};sec.append(row)});root.append(sec)})}
 document.getElementById("search").oninput=render;document.getElementById("season").onchange=render;document.getElementById("reset").onclick=()=>{if(confirm("Reset all NaruCannon progress?")){progress={};localStorage.setItem(KEY,JSON.stringify(progress));render();update()}};render();update();
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
-}
 </script></body></html>
